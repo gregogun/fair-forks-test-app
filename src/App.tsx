@@ -1,5 +1,5 @@
 
-import { styled } from './stitches.config'
+import { keyframes, styled } from './stitches.config'
 
 const Container = styled('div', {
   height: '100vh',
@@ -8,11 +8,36 @@ const Container = styled('div', {
   alignItems: 'start',
 })
 
+const moveBg = keyframes({
+  'to': {
+    backgroundPosition: 'var(--bg-size) 0'
+  }
+});
+
 const Display = styled('h1', {
-  fontSize: '6rem',
+  '--bg-size': '400%',
+
+  fontSize: 'clamp(3rem, 25vmin, 8rem)',
   lineHeight: 1,
   letterSpacing: '-3px',
-  color: '$slate12',
+  background: `linear-gradient(
+    90deg,
+    var(--colors-gradientColor1),
+    var(--colors-gradientColor2),
+    var(--colors-gradientColor3),
+    var(--colors-gradientColor4),
+    var(--colors-gradientColor3),
+    var(--colors-gradientColor2),
+    var(--colors-gradientColor1)
+  ) 0 0 / var(--bg-size) 100%`,
+
+  color: 'transparent',
+  '-webkit-background-clip': 'text',
+  backgroundClip: 'text',
+
+  "@media (prefers-reduced-motion: no-preference)": {
+    animation: `${moveBg} 12s infinite linear`,
+  },
 });
 
 const Image = styled('img', {
@@ -31,6 +56,11 @@ const Header = styled('header', {
 })
 const Main = styled('main')
 
+const Text = styled('p', {
+  fontSize: 21,
+  lineHeight: 1.5,
+})
+
 function App() {
   return (
     <Container>
@@ -38,20 +68,23 @@ function App() {
       >
       <Flex css={{
         gap: 8,
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: 8,
+        backgroundColor: '$slate1',
+        borderRadius: 8
       }}>
-      <Image src={`https://arweave.net/VBzCUcYpQ8l8gJDBa1bxjQBFUpYf8GSkdeRZqwg0jvE`} alt='Fair Forks logo' />
+      <Image src={`https://arweave.net/fsbvV6O4qmYYW3baWcWyB_3PrB3OcIecrKLOdDbgCuE`} alt='Fair Forks logo' />
       <Box 
       css={{
         borderRadius: 9999,
-        backgroundColor: '$violet5',
+        backgroundColor: '$slate2',
         color: '$violet12',
         padding: '2px 12px',
         fontWeight: 600,
         fontSize: 15
       }}
       >
-        v1a
+        v2b
       </Box>
       </Flex>
       </Header>
@@ -60,10 +93,30 @@ function App() {
         display: 'grid',
         placeItems: 'center',
         flex: 1,
-        width: '100%'
+        width: '100%',
       }}
       >
+        <Box css={{
+          backgroundColor: '$slate1',
+          padding: '20px 80px',
+          borderRadius: 12
+        }}>
       <Display>Welcome to Fair Forks</Display>
+      <Text
+      css={{ textAlign: 'center' }}
+      >
+        The paradigm of evolutionary apps is upon us. <br />
+        Learn more in the paper{' '}
+        <Box css={{ color: '$violet11', lineHeight: 3 }} as='a' href="https://arweave.net/loJ6EmO_2pTA313k3KtXEyrmCtCTJ5ThZMcPtNxX0m4"
+        target='_blank'
+        rel='noreferrer'
+        >
+          <em>
+         Fair Forks: Towards Incentivized Protocol Governance
+         </em>
+        </Box>
+      </Text>
+      </Box>
       </Main>
     </Container>
   )
