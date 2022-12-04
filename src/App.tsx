@@ -31,6 +31,11 @@ const Header = styled('header', {
 })
 const Main = styled('main')
 
+const Text = styled('p', {
+  fontSize: 18,
+  lineHeight: 1.5
+})
+
 function App() {
   return (
     <Container>
@@ -51,19 +56,45 @@ function App() {
         fontSize: 15
       }}
       >
-        v1a
+        v2a
       </Box>
       </Flex>
       </Header>
       <Main
       css={{
-        display: 'grid',
-        placeItems: 'center',
+        textAlign: 'center',
         flex: 1,
         width: '100%'
       }}
       >
-      <Display>Welcome to Fair Forks</Display>
+      <Display css={{ marginBottom: 96 }}>Welcome to{' '}
+        <Box css={{
+          color: '$green9',
+          position: 'relative',
+
+          '&::after': {
+            position: 'absolute',
+            content: 'url(https://arweave.net/7-oZj07_i-kMyN-pvCLnABm2lxHMsYsEN1LkgaK4a7c)',
+            display: 'block',
+            top: 72,
+            right: 0,
+            height: 96
+          },
+        }} as='span'>
+        Fair Forks
+        </Box>
+        </Display>
+      <Text>
+        New to the idea?
+      </Text>
+      <Text css={{
+        marginTop: 12
+      }}>
+       Check out this presentation from Sam Williams on what the future of app development could look like.
+      </Text>
+      <Box>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/LnUqh8NTOS4?start=654" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      </Box>
       </Main>
     </Container>
   )
