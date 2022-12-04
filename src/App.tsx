@@ -6,6 +6,7 @@ const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
+  backgroundColor: '$violet9'
 })
 
 const Display = styled('h1', {
@@ -44,14 +45,14 @@ function App() {
       <Box 
       css={{
         borderRadius: 9999,
-        backgroundColor: '$violet5',
-        color: '$violet12',
+        backgroundColor: 'black',
+        color: 'white',
         padding: '2px 12px',
         fontWeight: 600,
         fontSize: 15
       }}
       >
-        v1a
+        v1b
       </Box>
       </Flex>
       </Header>
